@@ -34,10 +34,9 @@ def test_post_very_long_name_new_pets(name = 'Бегемот34534543534534434534
     pet_photo = os.path.join(os.path.dirname(__file__), pet_photo)
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     status, result = pf.post_api_pets(auth_key, name, animal_type, age, pet_photo)
-    '''Проверяем полученные данные. Код 431 - поля заголовка запроса слишком большие 
-       код 400 - неправильный, некорректный запрос'''
+    '''Проверяем полученные данные.'''
     try:
-        assert status == 431 or status == 400
+        assert status == 403 or status == 400
     except:
         print('Тест не пройден')
 
@@ -46,10 +45,9 @@ def test_post_letters_in_number_field_new_pets(name = 'Мурзик', animal_typ
     pet_photo = os.path.join(os.path.dirname(__file__), pet_photo)
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     status, result = pf.post_api_pets(auth_key, name, animal_type, age, pet_photo)
-    '''Проверяем полученные данные. Код 415 - неподдерживаемый тип данных 
-       код 400 - неправильный, некорректный запрос'''
+    '''Проверяем полученные данные.'''
     try:
-        assert status == 400 or status == 415
+        assert status == 400 or status == 403
     except:
         print('Тест не пройден')
 
